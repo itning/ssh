@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="sl.itcast.entity">
+	<class name="HomeWork" table="homework">
+		<id name="id_ext"/>
+		<property name="memi" column="memi"/>
+		<property name="size" column="size"/>
+        <many-to-one name="user_id" class="User" column="user_id"/>
+        <many-to-one name="type_id" class="Work" column="type_id"/>
+	</class>
+</hibernate-mapping>
