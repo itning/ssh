@@ -3,14 +3,14 @@
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping package="sl.itcast.entity">
+<hibernate-mapping package="sl.young.entity">
     <class name="User" table="user">
-        <id name="user_id" column="user_id"/>
-        <property name="user_name" column="user_name"/>
-        <property name="first_login" column="first_login"/>
-        <property name="user_pwd" column="user_pwd"/>
-        <property name="user_status" column="user_status"/>
-        <property name="user_type" column="user_type"/>
+        <id name="userId" column="userId"/>
+        <property name="userName" column="userName"/>
+        <property name="firstLogin" column="firstLogin"/>
+        <property name="userPwd" column="userPwd"/>
+        <property name="userStatus" column="userStatus"/>
+        <property name="userType" column="userType"/>
     </class>
 
 </hibernate-mapping>

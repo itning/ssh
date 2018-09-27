@@ -3,12 +3,12 @@
 	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping package="sl.itcast.entity">
+<hibernate-mapping package="sl.young.entity">
 	<class name="HomeWork" table="homework">
-		<id name="id_ext"/>
+		<id name="idExt"/>
 		<property name="memi" column="memi"/>
 		<property name="size" column="size"/>
-        <many-to-one name="user_id" class="User" column="user_id"/>
-        <many-to-one name="type_id" class="Work" column="type_id"/>
+        <many-to-one name="userId" class="User" column="userId"/>
+        <many-to-one name="typeId" class="Work" column="typeId"/>
 	</class>
 </hibernate-mapping>

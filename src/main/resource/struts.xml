@@ -6,8 +6,24 @@
 
 <struts>
     <package name="ssh" extends="struts-default" namespace="/">
-        <action name="d" class="sl.itcast.action.UserAction" method="execute">
-            <result name="success">/index.jsp</result>
+        <action name="HomeWork_select" class="sl.young.action.HomeWorkAction" method="select">
+            <result name="success">/homepage.jsp</result>
+        </action>
+        <action name="HomeWork_delete" class="sl.young.action.HomeWorkAction" method="delete">
+            <result name="success">/homepage.jsp</result>
+        </action>
+    </package>
+    <package name="file" extends="struts-default">
+        <action name="file_updown" class="sl.young.action.FileUpdown" method="execute">
+            <!-- 限制允许上传的文件的类型 -->
+            <interceptor-ref name="defaultStack">
+                <!-- 限制允许的文件的扩展名 -->
+                <param name="fileUpload.allowedExtensions">txt,jpg,jar,docx,doc,xls,slsx</param>
+                <!-- 限制允许的类型 【与上面同时使用，取交集】 <param name="fileUpload.allowedTypes">text/plain</param> -->
+            </interceptor-ref>
+            <result name="success">success.jsp</result>
+            <!-- 文件上传出错返回input -->
+<!--            <result name="input">fileerror.jsp</result>-->
         </action>
     </package>
 </struts>

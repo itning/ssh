@@ -12,10 +12,10 @@
         http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
         http://www.springframework.org/schema/tx
      	http://www.springframework.org/schema/tx/spring-tx.xsd">
-    <!--    <bean id="userDao" class="sl.itcast.dao.UserDao">
+    <!--    <bean id="userDao" class="sl.yangao.UserDao">
             <property name="sessionFactory" ref="sessionFactory"/>
         </bean>-->
-    <context:component-scan base-package="sl.itcast"/>
+    <context:component-scan base-package="sl.young"/>
     <!-- 1) 连接池实例 -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
@@ -46,9 +46,9 @@
         </property>-->
         <property name="annotatedClasses">
             <list>
-                <value>sl.itcast.entity.Work</value>
-                <value>sl.itcast.entity.User</value>
-                <value>sl.itcast.entity.HomeWork</value>
+                <value>sl.young.entity.Work</value>
+                <value>sl.young.entity.User</value>
+                <value>sl.young.entity.HomeWork</value>
             </list>
         </property>
     </bean>
@@ -66,7 +66,7 @@
     </tx:advice>
     <!-- # AOP配置 -->
     <aop:config>
-        <aop:pointcut expression="execution(* sl.itcast.service.*.*(..))" id="pt"/>
+        <aop:pointcut expression="execution(* sl.young.service.*.*(..))" id="pt"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="pt"/>
     </aop:config>
 </beans>

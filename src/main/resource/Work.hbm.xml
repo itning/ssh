@@ -3,10 +3,10 @@
 	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping package="sl.itcast.entity">
+<hibernate-mapping package="sl.young.entity">
 	
 <class name="Work" table="work">
-	<id name="type_id" column="type_id"/>
-	<property name="type_name" column="type_name"/>
+	<id name="typeId" column="typeId"/>
+	<property name="typeName" column="typeName"/>
 </class>
 </hibernate-mapping>
