@@ -6,24 +6,54 @@
 
 <struts>
     <package name="ssh" extends="struts-default" namespace="/">
+        <interceptors>
+            <interceptor name="loginInterceptor " class="sl.young.action.UserInterceptor"/>
+            <interceptor-stack name="stack">
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="loginInterceptor "/>
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="stack"/>
+        <default-action-ref name="index"/>
+        <global-results>
+            <result name="login">/login.jsp</result>
+        </global-results>
+        <action name="index">
+            <result type="dispatcher">/login.jsp</result>
+        </action>
         <action name="HomeWork_select" class="sl.young.action.HomeWorkAction" method="select">
             <result name="success">/homepage.jsp</result>
         </action>
         <action name="HomeWork_delete" class="sl.young.action.HomeWorkAction" method="delete">
             <result name="success">/homepage.jsp</result>
         </action>
-    </package>
-    <package name="file" extends="struts-default">
-        <action name="file_updown" class="sl.young.action.FileUpdown" method="execute">
+        <action name="userAction" class="sl.young.action.UserAction" method="login">
+            <result name="success" type="redirectAction">HomeWork_select</result>
+            <result name="error">login.jsp</result>
+        </action>
+        <action name="HomeWork_Down" class="sl.young.action.FileDownAction" method="download">
+            <result name="download" type="stream">
+                <!-- 允许下载的文件的类型:指定为所有的二进制文件类型 -->
+                <param name="contentType">application/octet-stream</param>
+                <!-- 对应的是Action中属性： 返回流的属性【其实就是getAttrInputStream()】 -->
+                <param name="inputName">attrInputStream</param>
+                <!-- 下载头，包括：浏览器显示的文件名 -->
+                <param name="contentDisposition">attachment;filename=${downFileName}</param>
+                <!-- 缓冲区大小设置 -->
+                <param name="bufferSize">1024</param>
+            </result>
+            <result name="error">error.jsp</result>
+        </action>
+        <action name="file_updown" class="sl.young.action.FileUpdownAction" method="execute">
             <!-- 限制允许上传的文件的类型 -->
             <interceptor-ref name="defaultStack">
                 <!-- 限制允许的文件的扩展名 -->
                 <param name="fileUpload.allowedExtensions">txt,jpg,jar,docx,doc,xls,slsx</param>
                 <!-- 限制允许的类型 【与上面同时使用，取交集】 <param name="fileUpload.allowedTypes">text/plain</param> -->
             </interceptor-ref>
-            <result name="success">success.jsp</result>
+            <result name="success" type="redirectAction">HomeWork_select</result>
             <!-- 文件上传出错返回input -->
-<!--            <result name="input">fileerror.jsp</result>-->
+            <!--            <result name="input">fileerror.jsp</result>-->
         </action>
     </package>
 </struts>

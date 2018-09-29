@@ -6,7 +6,7 @@
 <hibernate-mapping package="sl.young.entity">
     <class name="User" table="user">
         <id name="userId" column="userId"/>
-        <property name="userName" column="userName"/>
+        <property name="userId" column="userId"/>
         <property name="firstLogin" column="firstLogin"/>
         <property name="userPwd" column="userPwd"/>
         <property name="userStatus" column="userStatus"/>

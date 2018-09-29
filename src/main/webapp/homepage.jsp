@@ -6,7 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
+<% String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+    application.setAttribute("basePath", basePath);
+%>
 <html>
 <head>
     <title>Title</title>
@@ -18,7 +23,10 @@
 <body class="container">
 <script>
     function homeWokeDelete(idExt) {
-        window.location.href = "/HomeWork_delete?id=" + idExt;
+        window.location.href = "${basePath}HomeWork_delete?id=" + idExt;
+    }
+    function  homeWorkDown(idExt) {
+        window.location.href="${basePath}HomeWork_Down?id="+idExt;
     }
 </script>
 <div class="page-header">
@@ -26,11 +34,11 @@
         <small>文件</small>
     </h1>
 </div>
-<form action="/file_updown" method="post" enctype="multipart/form-data">
+<form action="${basePath}file_updown" method="post" enctype="multipart/form-data">
     <input type="file" name="file" value="选择文件"/>
     <select class="form-control" name="type" style="width: 30%">
 <c:forEach items="${requestScope.get('workList')}" var="workList">
-        <option>${workList.typeName}</option>
+        <option value="${workList.typeId}">${workList.typeName}</option>
 </c:forEach>
     </select>
     <input type="submit" class="btn btn-success" value="上传">
@@ -59,7 +67,7 @@
                 <button class="btn btn-default" onclick="homeWokeDelete('${homeWork.idExt}')">删除</button>
             </td>
             <td>
-                <button class="btn btn-default" onclick="">下载</button>
+                <button class="btn btn-default" onclick="homeWorkDown('${homeWork.idExt}')">下载</button>
             </td>
         </tr>
     </c:forEach>
