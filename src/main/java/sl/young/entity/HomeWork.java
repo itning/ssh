@@ -7,10 +7,10 @@ import java.io.Serializable;
 public class HomeWork implements Serializable {
     @Id
     private String idExt;
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.DETACH})
     @JoinColumn(name = "user")
     private User user;
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.DETACH})
     @JoinColumn(name = "work")
     private Work work;
     private String memi;

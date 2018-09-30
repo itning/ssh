@@ -25,11 +25,35 @@
             <result name="success">/homepage.jsp</result>
         </action>
         <action name="HomeWork_delete" class="sl.young.action.HomeWorkAction" method="delete">
-            <result name="success">/homepage.jsp</result>
+            <result name="success" type="redirectAction">HomeWork_select</result>
+        </action>
+        <action name="HomeWork_delete" class="sl.young.action.HomeWorkAction" method="findAll">
+            <result name="success" type="redirectAction">HomeWork_select</result>
         </action>
         <action name="userAction" class="sl.young.action.UserAction" method="login">
             <result name="success" type="redirectAction">HomeWork_select</result>
             <result name="error">login.jsp</result>
+            <result name="admin" type="redirectAction">AdminAction</result>
+        </action>
+        <action name="AdminAction" class="sl.young.action.AdminAction" method="select">
+            <result name="success">/admin.jsp</result>
+            <result name="error">login.jsp</result>
+        </action>
+        <action name="AdminAction_data" class="sl.young.action.AdminAction" method="getData">
+            <result name="data">tableData.jsp</result>
+        </action>
+        <action name="HomeWork_Down_All" class="sl.young.action.DownAllAction" method="byTypeIdDownAll">
+            <result name="download" type="stream">
+                <!-- 允许下载的文件的类型:指定为所有的二进制文件类型 -->
+                <param name="contentType">application/octet-stream</param>
+                <!-- 对应的是Action中属性： 返回流的属性【其实就是getAttrInputStream()】 -->
+                <param name="inputName">attrInputStream</param>
+                <!-- 下载头，包括：浏览器显示的文件名 -->
+                <param name="contentDisposition">attachment;filename=${downFileName}</param>
+                <!-- 缓冲区大小设置 -->
+                <param name="bufferSize">1024</param>
+            </result>
+            <result name="error">error.jsp</result>
         </action>
         <action name="HomeWork_Down" class="sl.young.action.FileDownAction" method="download">
             <result name="download" type="stream">

@@ -10,4 +10,5 @@ public interface HomeWorkService {
     void delet(String id_ext );
     Optional<HomeWork> upData(String id_ext );
     List<HomeWork> select();
+    List<HomeWork> findByWorkId(String id);
 }

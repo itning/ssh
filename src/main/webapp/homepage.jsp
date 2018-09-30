@@ -25,8 +25,9 @@
     function homeWokeDelete(idExt) {
         window.location.href = "${basePath}HomeWork_delete?id=" + idExt;
     }
-    function  homeWorkDown(idExt) {
-        window.location.href="${basePath}HomeWork_Down?id="+idExt;
+
+    function homeWorkDown(idExt) {
+        window.location.href = "${basePath}HomeWork_Down?id=" + idExt;
     }
 </script>
 <div class="page-header">
@@ -35,11 +36,11 @@
     </h1>
 </div>
 <form action="${basePath}file_updown" method="post" enctype="multipart/form-data">
-    <input type="file" name="file" value="选择文件"/>
+    <input type="file" name="file" value="选择文件" required/>
     <select class="form-control" name="type" style="width: 30%">
-<c:forEach items="${requestScope.get('workList')}" var="workList">
-        <option value="${workList.typeId}">${workList.typeName}</option>
-</c:forEach>
+        <c:forEach items="${requestScope.get('workList')}" var="workList">
+            <option value="${workList.typeId}">${workList.typeName}</option>
+        </c:forEach>
     </select>
     <input type="submit" class="btn btn-success" value="上传">
 </form>
@@ -50,7 +51,7 @@
             <input type="text" class="form-control" id="exampleInputAmount" placeholder="键入名称">
         </div>
     </div>
-    <input type="submit" class="btn btn-default" value="搜索" style="width: 15%"/>
+    <input type="submit" class="btn btn-default" value="搜索"/>
 </form>
 <table class="table table-hover">
     <tr>

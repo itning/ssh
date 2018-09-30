@@ -2,11 +2,14 @@ package sl.young.dao.impl;
 
 import org.hibernate.IdentifierLoadAccess;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 import sl.young.dao.HomeWorkDao;
 import sl.young.entity.HomeWork;
+import sl.young.entity.User;
+import sl.young.entity.Work;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +18,7 @@ import java.util.Optional;
  * @author 舒露
  */
 @Repository
+@SuppressWarnings("all")
 public class HomeWorkDaoImpl extends HibernateDaoSupport implements HomeWorkDao {
     @Autowired
     public void setSessionFactoryOverride(SessionFactory sessionFactory) {
@@ -44,5 +48,17 @@ public class HomeWorkDaoImpl extends HibernateDaoSupport implements HomeWorkDao 
         return  from_user.list();*/
         assert getHibernateTemplate() != null;
         return getHibernateTemplate().loadAll(HomeWork.class);
+    }
+
+    @Override
+    public List<HomeWork> findAllByUser(User user) {
+        Query query = currentSession().createQuery("from HomeWork where user = ?").setParameter(0,user);
+        return query.list();
+    }
+
+    @Override
+    public List<HomeWork> findByWork(Work work) {
+        Query query = currentSession().createQuery("from HomeWork where work = ?").setParameter(0,work);
+        return query.list();
     }
 }

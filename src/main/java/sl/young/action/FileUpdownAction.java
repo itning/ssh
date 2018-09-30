@@ -1,25 +1,24 @@
 package sl.young.action;
 
 import com.opensymphony.xwork2.ActionContext;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import sl.young.entity.Work;
-
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import sl.young.entity.HomeWork;
 import sl.young.entity.User;
+import sl.young.entity.Work;
 import sl.young.service.HomeWorkService;
 import sl.young.service.UserService;
 import sl.young.service.WorkService;
 
+import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
-import java.util.UUID;
-import java.util.function.Supplier;
 
+@Transactional(rollbackOn = Exception.class)
 @Controller
 public class FileUpdownAction extends ActionSupport {
     @Autowired

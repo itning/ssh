@@ -4,9 +4,11 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import sl.young.entity.User;
 import sl.young.service.UserService;
 
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * @author 舒露
@@ -30,7 +32,13 @@ public class UserAction extends ActionSupport {
        if(userService.login(userId,userPwd)) {
            Map<String, Object> session = ActionContext.getContext().getSession();
            session.put("userInfo",userId);
-           return SUCCESS;
+           User user = userService.findOne(userId).get();
+           if('1'==user.getUserType()){
+               return SUCCESS;
+           }else {
+               return "admin";
+           }
+
        }
        return ERROR;
     }
